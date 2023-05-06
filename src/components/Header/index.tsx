@@ -15,6 +15,10 @@ export default function Header() {
     [theme, setTheme]
   );
 
+  const handleNewTab = useCallback(() => {
+    window.open("https://github.com/davipatricio/pomodoro-timer", "_blank");
+  }, []);
+
   return (
     <Container>
       <div className="name">
@@ -24,7 +28,7 @@ export default function Header() {
 
       <div className="icons">
         <Icon icon={<ThemeIcon />} onClick={handleTheme} />
-        <Icon icon={<AiOutlineGithub />} />
+        <Icon icon={<AiOutlineGithub />} onClick={handleNewTab} />
       </div>
     </Container>
   );

@@ -17,7 +17,7 @@ export const Container = styled.div`
     width: 100%;
   }
 
-  @media (max-height: 851px) {
+  @media (max-height: 850px) {
     padding: 72px 12px;
   }
 

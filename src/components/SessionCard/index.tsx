@@ -4,6 +4,7 @@ import HourglassSVG from "../../assets/hourglass.svg";
 import { usePomodoro } from "../../hooks/usePomodoro";
 import { PomodoroTimes } from "../../utils/constants/PomodoroTimes";
 import { CardItem, Container } from "./styles";
+import { formattedStages } from "../../utils/constants/PomodoroStages";
 
 const Badge = lazy(() => import("../Badge"));
 const Divider = lazy(() => import("../Divider"));
@@ -15,10 +16,15 @@ export default function SessionCard() {
 
   const stageDuration = PomodoroTimes[pomodoro.stages[0]];
   const progressPercent = 100 - (pomodoro.progress / stageDuration) * 100;
+  const mmSs = hhMmSs.fromS(stageDuration - pomodoro.progress);
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (!pomodoro.isRunning) return clearInterval(id);
+      if (!pomodoro.isRunning) {
+        document.title = `Pomodoro | ${mmSs} - Pausado`;
+
+        return clearInterval(id);
+      }
 
       if (progressPercent <= 0) {
         clearInterval(id);
@@ -26,6 +32,10 @@ export default function SessionCard() {
         pomodoro.setProgress(0);
         return;
       }
+
+      document.title = `Pomodoro | ${mmSs} - ${
+        formattedStages[pomodoro.stages[0]]
+      }`;
 
       pomodoro.setProgress(pomodoro.progress + 1);
     }, 1000);
@@ -65,10 +75,7 @@ export default function SessionCard() {
         <Badge type={pomodoro.stages[1] ?? "focus"} />
       </CardItem>
 
-      <ProgressBar
-        progress={progressPercent}
-        time={hhMmSs.fromS(stageDuration - pomodoro.progress)}
-      />
+      <ProgressBar progress={progressPercent} time={mmSs} />
     </Container>
   );
 }

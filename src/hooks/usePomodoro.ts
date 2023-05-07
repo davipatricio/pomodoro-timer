@@ -2,10 +2,11 @@ import { create } from "zustand";
 
 interface PomodoroState {
   isRunning: boolean;
+  progress: number;
+
   stages: ("focus" | "break" | "longBreak")[];
-  setPomodoro: (
-    pomodoro: Partial<PomodoroState>
-  ) => void;
+  setPomodoro: (pomodoro: Partial<PomodoroState>) => void;
+  setProgress: (progress: number) => void;
   skipStage: () => void;
   reset: () => void;
 }
@@ -29,21 +30,17 @@ const DEFAULT_STAGES: PomodoroState["stages"] = [
 
 export const usePomodoro = create<PomodoroState>((set) => ({
   isRunning: false,
-  // TODO: remove stage from array when it's done. stages[0] means the current stage.
+  progress: 0,
   stages: DEFAULT_STAGES,
   setPomodoro: (pomodoro) => set(pomodoro),
+  setProgress: (progress) => set({ progress }),
   skipStage: () =>
-    set((state) => {
-      // If we're on a long break, reset the stages.
-      if (state.stages[0] === "longBreak") {
-        return {
-          ...state,
-          stages: DEFAULT_STAGES,
-        };
-      }
+    set(({ stages }) => {
+      // If we're on a long break (last stage), reset the stages.
+      if (stages[0] === "longBreak")
+        return { stages: DEFAULT_STAGES, progress: 0 };
 
-      // remove the first stage from the array.
-      return { ...state, stages: state.stages.slice(1) };
+      return { stages: stages.slice(1), progress: 0 };
     }),
-  reset: () => set({ isRunning: false, stages: DEFAULT_STAGES }),
+  reset: () => set({ isRunning: false, stages: DEFAULT_STAGES, progress: 0 }),
 }));

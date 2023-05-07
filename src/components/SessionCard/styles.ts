@@ -11,7 +11,6 @@ export const Container = styled.div`
   padding: 1.5rem;
 
   width: 100%;
-  /* max-width: 550px; */
 `;
 
 export const CardItem = styled.div`

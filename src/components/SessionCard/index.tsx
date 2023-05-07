@@ -1,10 +1,24 @@
+import { useEffect, useState } from "react";
 import HourglassSVG from "../../assets/hourglass.svg";
 import Badge from "../Badge";
 import Divider from "../Divider";
 import Icon from "../Icon";
+import ProgressBar from "../ProgressBar";
 import { CardItem, Container } from "./styles";
 
 export default function SessionCard() {
+  const [progress, setProgress] = useState(12);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 1
+      );
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Container>
       <CardItem className="header">
@@ -35,6 +49,10 @@ export default function SessionCard() {
 
         <Badge type="longBreak" />
       </CardItem>
+
+      <Divider />
+
+      <ProgressBar progress={progress} time="11:11" />
     </Container>
   );
 }

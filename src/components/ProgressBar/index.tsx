@@ -1,9 +1,9 @@
-import { MdPause, MdPlayArrow, MdRefresh } from "react-icons/md";
+import { useCallback } from "react";
+import { MdPause, MdPlayArrow, MdRefresh, MdSkipNext } from "react-icons/md";
+import { usePomodoro } from "../../hooks/usePomodoro";
+import { BadgeProps } from "../Badge";
 import Icon from "../Icon";
 import { Container } from "./styles";
-import { usePomodoro } from "../../hooks/usePomodoro";
-import { useCallback } from "react";
-import { BadgeProps } from "../Badge";
 
 interface ProgressBarProps {
   progress: number;
@@ -16,19 +16,24 @@ export default function ProgressBar({ progress, time }: ProgressBarProps) {
 
   const PauseIcon = pomodoro.isRunning ? MdPause : MdPlayArrow;
 
+  const handleReset = useCallback(() => {
+    pomodoro.reset();
+  }, [pomodoro]);
+
   const handlePause = useCallback(() => {
     pomodoro.setPomodoro({ isRunning: !pomodoro.isRunning });
   }, [pomodoro]);
 
-  const handleReset = useCallback(() => {
-    pomodoro.reset();
+  const handleSkip = useCallback(() => {
+    pomodoro.skipStage();
   }, [pomodoro]);
 
   return (
     <Container progress={progress} $type={pomodoro.stages[0]}>
       <div className="actions">
-        <Icon icon={<PauseIcon />} onClick={handlePause} />
         <Icon icon={<MdRefresh />} onClick={handleReset} />
+        <Icon icon={<PauseIcon />} onClick={handlePause} />
+        <Icon icon={<MdSkipNext />} onClick={handleSkip} />
       </div>
 
       <span>{time}</span>

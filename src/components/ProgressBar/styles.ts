@@ -19,8 +19,8 @@ export const Container = styled.div<ProgressProps>`
       transparent 90% 100%
     ),
     conic-gradient(
-        ${({ $type, progress }) => `${StateColors[$type]} ${progress}%`},
-        ${({ theme }) => theme.colors.darkBorder} 0
+      ${({ $type, progress }) => `${StateColors[$type]} ${progress}%`},
+      ${({ theme }) => theme.colors.darkBorder} 0
     );
 
   position: relative;
@@ -65,11 +65,19 @@ export const Container = styled.div<ProgressProps>`
 
       &:hover {
         background-color: ${({ theme }) => theme.colors.lime};
-        scale: 1.1;
+        scale: 1.07;
       }
 
       > svg {
         font-size: 2.5rem;
+      }
+
+      /* Pause/resume button */
+      &:nth-child(2) {
+        scale: 1.1;
+        &:hover {
+          scale: 1.15;
+        }
       }
     }
   }

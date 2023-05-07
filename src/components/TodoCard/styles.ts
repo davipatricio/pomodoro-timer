@@ -73,6 +73,10 @@ export const SubmitWrapper = styled.label`
 
   height: 40px;
 
+  @media (max-width: 768px) {
+    height: 45px;
+  }
+
   > input {
     appearance: none;
 
@@ -81,13 +85,17 @@ export const SubmitWrapper = styled.label`
     border: none;
     border-radius: 4px;
 
-    font-size: 0.85rem;
+    font-size: 0.87rem;
     font-weight: 500;
 
     padding: 8px;
 
     height: 100%;
     width: 100%;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.inputs.color};
@@ -110,6 +118,11 @@ export const SubmitWrapper = styled.label`
 
     transition: 0.5s;
 
+    @media (max-width: 768px) {
+      padding: 8px;
+      line-height: initial;
+    }
+
     &:not([disabled]) &:hover {
       filter: brightness(0.9);
     }
@@ -118,6 +131,11 @@ export const SubmitWrapper = styled.label`
       cursor: not-allowed;
       background-color: orangered;
       opacity: 0.5;
+    }
+
+    > svg {
+      height: 20px;
+      width: 20px;
     }
   }
 `;

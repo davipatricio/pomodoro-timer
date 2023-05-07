@@ -1,4 +1,5 @@
-import { lazy, useCallback, useState } from "react";
+import { lazy, useCallback, useEffect, useState } from "react";
+import { MdAdd } from "react-icons/md";
 import RocketSVG from "../../assets/rocket.svg";
 import { CheckboxWrapper, SubmitWrapper } from "./styles";
 
@@ -22,6 +23,18 @@ export default function TodoCard() {
     setTasks([...tasks, inputValue]);
     setInputValue("");
   }, [inputValue, tasks]);
+
+  const [buttonIcon, setButtonIcon] = useState(
+    window.innerWidth <= 768 ? <MdAdd /> : <p>Adicionar</p>
+  );
+
+  useEffect(() => {
+    const handleResize = () =>
+      setButtonIcon(window.innerWidth <= 768 ? <MdAdd /> : <p>Adicionar</p>);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Card>
@@ -57,7 +70,7 @@ export default function TodoCard() {
           onChange={handleInputChange}
         />
         <button type="button" onClick={handleAddTask} disabled={!inputValue}>
-          Adicionar
+          {buttonIcon}
         </button>
       </SubmitWrapper>
     </Card>

@@ -56,8 +56,8 @@ export const Container = styled.div<ProgressProps>`
     width: 250px;
 
     &:hover,
-    &:focus,
-    &:has(> button:focus, > button:hover) {
+    &:focus-visible,
+    &:has(> button:focus-visible, > button:hover) {
       opacity: 1;
     }
 
@@ -69,7 +69,7 @@ export const Container = styled.div<ProgressProps>`
       width: 50px;
 
       &:hover,
-      &:focus {
+      &:focus-visible {
         background-color: ${({ theme }) => theme.colors.lime};
         scale: 1.07;
       }
@@ -82,7 +82,7 @@ export const Container = styled.div<ProgressProps>`
       &:nth-child(2) {
         scale: 1.1;
         &:hover,
-        &:focus {
+        &:focus-visible {
           scale: 1.15;
         }
       }

@@ -18,7 +18,7 @@ export default function SessionCard() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (!pomodoro.isRunning) return;
+      if (!pomodoro.isRunning) return clearInterval(id);
 
       if (progressPercent <= 0) {
         clearInterval(id);
@@ -47,7 +47,7 @@ export default function SessionCard() {
 
       <Divider />
 
-      <CardItem className="header">
+      <CardItem>
         <section>
           <h2>Modo atual:</h2>
           <span>Ciclo atual do cronômotro</span>
@@ -56,7 +56,7 @@ export default function SessionCard() {
         <Badge type={pomodoro.stages[0]} />
       </CardItem>
 
-      <CardItem className="header">
+      <CardItem>
         <section>
           <h2>Próximo modo:</h2>
           <span>Qual ciclo será ativado</span>
@@ -68,7 +68,6 @@ export default function SessionCard() {
       <ProgressBar
         progress={progressPercent}
         time={hhMmSs.fromS(stageDuration - pomodoro.progress)}
-        type={pomodoro.stages[0]}
       />
     </Container>
   );

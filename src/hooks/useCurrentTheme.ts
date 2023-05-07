@@ -1,9 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+export type Theme = "light" | "dark";
+
 interface CurrentThemeState {
-  theme: "light" | "dark";
-  setTheme: (theme: CurrentThemeState["theme"]) => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
 export const useCurrentTheme = create(

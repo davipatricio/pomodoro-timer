@@ -15,9 +15,11 @@ export default function Header() {
     [theme, setTheme]
   );
 
-  const handleNewTab = useCallback(() => {
-    window.open("https://github.com/davipatricio/pomodoro-timer", "_blank");
-  }, []);
+  const handleNewTab = useCallback(
+    () =>
+      window.open("https://github.com/davipatricio/pomodoro-timer", "_blank"),
+    []
+  );
 
   return (
     <Container>

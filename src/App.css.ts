@@ -8,14 +8,17 @@ export const Container = styled.div`
   // #root fills the entire screen
   width: 85%;
 
-  @media (max-width: 768px) {
-    padding: 72px 12px;
-    width: 100%;
-  }
-
   @media (max-width: 1024px) {
     padding: 0 24px;
     width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media (max-height: 851px) {
+    padding: 72px 12px;
   }
 
   .cards {

@@ -3,10 +3,12 @@ import Icon from "../Icon";
 import { Container } from "./styles";
 import { usePomodoro } from "../../hooks/usePomodoro";
 import { useCallback } from "react";
+import { BadgeProps } from "../Badge";
 
 interface ProgressBarProps {
   progress: number;
   time: string;
+  type?: BadgeProps["type"];
 }
 
 export default function ProgressBar({ progress, time }: ProgressBarProps) {
@@ -23,7 +25,7 @@ export default function ProgressBar({ progress, time }: ProgressBarProps) {
   }, [pomodoro]);
 
   return (
-    <Container progress={progress}>
+    <Container progress={progress} $type={pomodoro.stages[0]}>
       <div className="actions">
         <Icon icon={<PauseIcon />} onClick={handlePause} />
         <Icon icon={<MdRefresh />} onClick={handleReset} />

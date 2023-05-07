@@ -69,6 +69,7 @@ export default function SessionCard() {
       <ProgressBar
         progress={progressPercent}
         time={hhMmSs.fromS(currentPomodoroTime - progressSeconds)}
+        type={pomodoro.stages[0]}
       />
     </Container>
   );

@@ -38,6 +38,7 @@ export const Container = styled.div<ContainerProps>`
   > span {
     font-size: 1rem;
     font-weight: 600;
+    user-select: none;
   }
 `;
 

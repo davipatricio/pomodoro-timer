@@ -1,18 +1,18 @@
 import hhMmSs from "hh-mm-ss";
 import { useEffect } from "react";
 import HourglassSVG from "../../assets/hourglass.svg";
-import { PomodoroTimes, usePomodoro } from "../../hooks/usePomodoro";
+import { usePomodoro } from "../../hooks/usePomodoro";
 import Badge from "../Badge";
 import Divider from "../Divider";
 import Icon from "../Icon";
 import ProgressBar from "../ProgressBar";
 import { CardItem, Container } from "./styles";
+import { PomodoroTimes } from "../../utils/constants/PomodoroTimes";
 
 export default function SessionCard() {
   const pomodoro = usePomodoro();
 
   const stageDuration = PomodoroTimes[pomodoro.stages[0]];
-
   const progressPercent = 100 - (pomodoro.progress / stageDuration) * 100;
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 import styled from "styled-components";
+import { PomodoroStages } from "../../utils/constants/PomodoroStages";
 import { StateColors } from "../../utils/constants/StateColors";
-import { BadgeProps } from "../Badge";
 
 interface ProgressProps {
   progress: number;
-  $type: BadgeProps["type"];
+  $type: PomodoroStages;
 }
 
 export const Container = styled.div<ProgressProps>`

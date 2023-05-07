@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { hexToRgb } from "../../utils/hexToRgb";
 import { StateColors } from "../../utils/constants/StateColors";
+import { PomodoroStages } from "../../utils/constants/PomodoroStages";
 
 interface ContainerProps {
-  $type: "focus" | "break" | "longBreak";
+  $type: PomodoroStages;
 }
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
+
   padding: 4.5px 8px;
   border-radius: 4px;
   white-space: nowrap;
+
   width: fit-content;
 
   ${({ $type }) => {

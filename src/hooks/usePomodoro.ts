@@ -1,21 +1,16 @@
 import { create } from "zustand";
+import { PomodoroStages } from "../utils/constants/PomodoroStages";
 
 interface PomodoroState {
   isRunning: boolean;
   progress: number;
+  stages: PomodoroStages[];
 
-  stages: ("focus" | "break" | "longBreak")[];
   setPomodoro: (pomodoro: Partial<PomodoroState>) => void;
   setProgress: (progress: number) => void;
   skipStage: () => void;
   reset: () => void;
 }
-
-export const PomodoroTimes: Record<PomodoroState["stages"][number], number> = {
-  focus: 3,
-  break: 5,
-  longBreak: 5,
-};
 
 const DEFAULT_STAGES: PomodoroState["stages"] = [
   "focus",
@@ -32,6 +27,7 @@ export const usePomodoro = create<PomodoroState>((set) => ({
   isRunning: false,
   progress: 0,
   stages: DEFAULT_STAGES,
+
   setPomodoro: (pomodoro) => set(pomodoro),
   setProgress: (progress) => set({ progress }),
   skipStage: () =>

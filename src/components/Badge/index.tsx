@@ -1,14 +1,15 @@
 import { TbBrain, TbCoffee } from "react-icons/tb";
 import { Container } from "./styles";
+import { PomodoroStages } from "../../utils/constants/PomodoroStages";
 
-const Types: Record<BadgeProps["type"], string> = {
+const Types: Record<PomodoroStages, string> = {
   focus: "Foco",
   break: "Pausa",
   longBreak: "Pausa longa",
 };
 
 export interface BadgeProps {
-  type: "focus" | "break" | "longBreak";
+  type: PomodoroStages;
 }
 
 export default function Badge({ type }: BadgeProps) {

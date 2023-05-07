@@ -31,9 +31,9 @@ export const Container = styled.div<ProgressProps>`
   height: 224px;
   width: 224px;
 
-  &:hover {
+  &:hover,
+  &:focus {
     > div.actions {
-      visibility: visible;
       opacity: 1;
     }
   }
@@ -46,7 +46,6 @@ export const Container = styled.div<ProgressProps>`
     justify-content: center;
     gap: 10px;
 
-    visibility: hidden;
     opacity: 0;
 
     border-radius: 50%;
@@ -56,6 +55,12 @@ export const Container = styled.div<ProgressProps>`
     height: 250px;
     width: 250px;
 
+    &:hover,
+    &:focus,
+    &:has(> button:focus, > button:hover) {
+      opacity: 1;
+    }
+
     > button {
       color: ${({ theme }) => theme.text.primary};
       background-color: ${({ theme }) => theme.colors.checkbox.border};
@@ -63,7 +68,8 @@ export const Container = styled.div<ProgressProps>`
       height: 50px;
       width: 50px;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: ${({ theme }) => theme.colors.lime};
         scale: 1.07;
       }
@@ -75,7 +81,8 @@ export const Container = styled.div<ProgressProps>`
       /* Pause/resume button */
       &:nth-child(2) {
         scale: 1.1;
-        &:hover {
+        &:hover,
+        &:focus {
           scale: 1.15;
         }
       }

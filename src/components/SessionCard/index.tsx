@@ -2,10 +2,11 @@ import hhMmSs from "hh-mm-ss";
 import { lazy, useEffect } from "react";
 import HourglassSVG from "../../assets/hourglass.svg";
 import { usePomodoro } from "../../hooks/usePomodoro";
-import { PomodoroTimes } from "../../utils/constants/PomodoroTimes";
-import { CardItem, Container } from "./styles";
 import { formattedStages } from "../../utils/constants/PomodoroStages";
+import { PomodoroTimes } from "../../utils/constants/PomodoroTimes";
 
+const Card = lazy(() => import("../Card"));
+const CardItem = lazy(() => import("../Card/CardItem"));
 const Badge = lazy(() => import("../Badge"));
 const Divider = lazy(() => import("../Divider"));
 const Icon = lazy(() => import("../Icon"));
@@ -45,8 +46,8 @@ export default function SessionCard() {
   }, [progressPercent, pomodoro.isRunning]);
 
   return (
-    <Container>
-      <CardItem className="header">
+    <Card>
+      <CardItem>
         <section>
           <h1>Dados da Sessão</h1>
           <p>Acompanhe os próximos cíclos</p>
@@ -76,6 +77,6 @@ export default function SessionCard() {
       </CardItem>
 
       <ProgressBar progress={progressPercent} time={mmSs} />
-    </Container>
+    </Card>
   );
 }

@@ -1,9 +1,10 @@
-import { useCallback } from "react";
+import { lazy, useCallback } from "react";
 import { MdPause, MdPlayArrow, MdRefresh, MdSkipNext } from "react-icons/md";
 import { usePomodoro } from "../../hooks/usePomodoro";
 import { BadgeProps } from "../Badge";
-import Icon from "../Icon";
 import { Container } from "./styles";
+
+const Icon = lazy(() => import("../Icon"));
 
 interface ProgressBarProps {
   progress: number;

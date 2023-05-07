@@ -1,6 +1,8 @@
+import { lazy } from "react";
 import { Container } from "./App.css.ts";
-import SessionCard from "./components/SessionCard";
-import Header from "./components/Header/index.tsx";
+
+const SessionCard = lazy(() => import("./components/SessionCard"));
+const Header = lazy(() => import("./components/Header"));
 
 export default function App() {
   return (

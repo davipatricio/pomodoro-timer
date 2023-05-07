@@ -1,13 +1,14 @@
 import hhMmSs from "hh-mm-ss";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import HourglassSVG from "../../assets/hourglass.svg";
 import { usePomodoro } from "../../hooks/usePomodoro";
-import Badge from "../Badge";
-import Divider from "../Divider";
-import Icon from "../Icon";
-import ProgressBar from "../ProgressBar";
-import { CardItem, Container } from "./styles";
 import { PomodoroTimes } from "../../utils/constants/PomodoroTimes";
+import { CardItem, Container } from "./styles";
+
+const Badge = lazy(() => import("../Badge"));
+const Divider = lazy(() => import("../Divider"));
+const Icon = lazy(() => import("../Icon"));
+const ProgressBar = lazy(() => import("../ProgressBar"));
 
 export default function SessionCard() {
   const pomodoro = usePomodoro();

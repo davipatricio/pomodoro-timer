@@ -32,13 +32,13 @@ export const usePomodoro = create<PomodoroState>((set) => ({
   setPomodoro: (pomodoro) => set(pomodoro),
   setProgress: (progress) => set({ progress }),
   skipStage: () =>
-    set((state) => {
+    set(({ stages, progress }) => {
       playPing();
 
-      const nextStages = state.stages.slice(1);
-      const progress = nextStages[0] === "longBreak" ? 0 : state.progress;
+      const nextStages = stages.length !== 1 ? stages.slice(1) : DEFAULT_STAGES;
+      const currentProgress = nextStages[0] === "longBreak" ? 0 : progress;
 
-      return { stages: nextStages, progress };
+      return { stages: nextStages, progress: currentProgress };
     }),
   reset: () => set({ isRunning: false, stages: DEFAULT_STAGES, progress: 0 }),
 }));

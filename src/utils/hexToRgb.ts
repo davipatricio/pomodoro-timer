@@ -1,4 +1,4 @@
-export const hexToRgb = (hex: `#${string}`, opacity?: number) => {
+export const hexToRgb = (hex: string, opacity?: number) => {
   const hexValue = hex.replace("#", "");
   const r = parseInt(hexValue.substring(0, 2), 16);
   const g = parseInt(hexValue.substring(2, 4), 16);

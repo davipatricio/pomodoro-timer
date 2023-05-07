@@ -9,7 +9,6 @@ export default function App() {
 
       <div className="cards">
         <SessionCard />
-        <SessionCard />
       </div>
     </Container>
   );

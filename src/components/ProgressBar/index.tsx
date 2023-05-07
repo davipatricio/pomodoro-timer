@@ -7,10 +7,10 @@ interface ProgressBarProps {
 
 export default function ProgressBar({ progress, time }: ProgressBarProps) {
   return (
-    <Container progress={progress} title={`Current progress: ${progress}%`}>
+    <Container progress={progress}>
       <span>{time}</span>
       <progress value={progress} max="100">
-        {progress}%
+        {Math.round(progress)}%
       </progress>
     </Container>
   );

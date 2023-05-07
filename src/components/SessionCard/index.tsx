@@ -1,5 +1,7 @@
+import hhMmSs from "hh-mm-ss";
 import { useEffect, useState } from "react";
 import HourglassSVG from "../../assets/hourglass.svg";
+import { PomodoroTimes, usePomodoro } from "../../hooks/usePomodoro";
 import Badge from "../Badge";
 import Divider from "../Divider";
 import Icon from "../Icon";
@@ -7,17 +9,29 @@ import ProgressBar from "../ProgressBar";
 import { CardItem, Container } from "./styles";
 
 export default function SessionCard() {
-  const [progress, setProgress] = useState(12);
+  const pomodoro = usePomodoro();
+  const [progressSeconds, setProgressSeconds] = useState(1);
+
+  const currentPomodoroTime = PomodoroTimes[pomodoro.stages[0]];
+
+  const progressPercent = 100 - (progressSeconds / currentPomodoroTime) * 100;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 0 : prevProgress + 1
-      );
-    }, 10000);
+    const id = setInterval(() => {
+      setProgressSeconds((prevProgress) => {
+        if (progressPercent <= 0) {
+          clearInterval(id);
+          pomodoro.skipStage();
+          return 0;
+        }
 
-    return () => clearInterval(interval);
-  }, []);
+        return prevProgress + 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [progressPercent]);
 
   return (
     <Container>
@@ -38,7 +52,7 @@ export default function SessionCard() {
           <span>Ciclo atual do cronômotro</span>
         </section>
 
-        <Badge type="focus" />
+        <Badge type={pomodoro.stages[0]} />
       </CardItem>
 
       <CardItem className="header">
@@ -47,12 +61,13 @@ export default function SessionCard() {
           <span>Qual ciclo será ativado</span>
         </section>
 
-        <Badge type="longBreak" />
+        <Badge type={pomodoro.stages[1] ?? "focus"} />
       </CardItem>
 
-      <Divider />
-
-      <ProgressBar progress={progress} time="11:11" />
+      <ProgressBar
+        progress={progressPercent}
+        time={hhMmSs.fromS(currentPomodoroTime - progressSeconds)}
+      />
     </Container>
   );
 }

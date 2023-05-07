@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  hh-mm-ss:
+    specifier: ^1.2.0
+    version: 1.2.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -18,6 +21,9 @@ dependencies:
     version: 4.3.8(react@18.2.0)
 
 devDependencies:
+  '@types/hh-mm-ss':
+    specifier: ^1.2.1
+    version: 1.2.1
   '@types/react':
     specifier: ^18.2.6
     version: 18.2.6
@@ -613,6 +619,10 @@ packages:
       '@swc/core-win32-arm64-msvc': 1.3.56
       '@swc/core-win32-ia32-msvc': 1.3.56
       '@swc/core-win32-x64-msvc': 1.3.56
+    dev: true
+
+  /@types/hh-mm-ss@1.2.1:
+    resolution: {integrity: sha512-oARXSm6cCPyjkr0jXoXiUEegCalMDu8juBOpE/Lmi+VOGLNcNBr60KRwI0FbGVPRXs+dnKpPXCzJLQl9/KQZMQ==}
     dev: true
 
   /@types/hoist-non-react-statics@3.3.1:
@@ -1296,6 +1306,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /hh-mm-ss@1.2.0:
+    resolution: {integrity: sha512-f4I9Hz1dLpX/3mrEs7yq30+FiuO3tt5NWAqAGeBTaoeoBfB8vhcQ3BphuDc5DjZb/K809agqrAaFlP0jhEU/8w==}
+    dependencies:
+      zero-fill: 2.2.4
+    dev: false
+
   /hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
@@ -1822,6 +1838,10 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zero-fill@2.2.4:
+    resolution: {integrity: sha512-/N5GEDauLHz2uGnuJXWO1Wfib4EC+q4yp9C1jojM7RubwEKADqIqMcYpETMm1lRop403fi3v1qTOdgDE8DIOdw==}
+    dev: false
 
   /zustand@4.3.8(react@18.2.0):
     resolution: {integrity: sha512-4h28KCkHg5ii/wcFFJ5Fp+k1J3gJoasaIbppdgZFO4BPJnsNxL0mQXBSFgOgAdCdBj35aDTPvdAJReTMntFPGg==}

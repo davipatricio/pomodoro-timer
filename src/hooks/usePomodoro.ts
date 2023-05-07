@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { PomodoroStages } from "../utils/constants/PomodoroStages";
+import { playPing } from "../utils/playPing";
 
 interface PomodoroState {
   isRunning: boolean;
@@ -12,7 +13,7 @@ interface PomodoroState {
   reset: () => void;
 }
 
-const DEFAULT_STAGES: PomodoroState["stages"] = [
+const DEFAULT_STAGES: PomodoroStages[] = [
   "focus",
   "break",
   "focus",
@@ -32,6 +33,8 @@ export const usePomodoro = create<PomodoroState>((set) => ({
   setProgress: (progress) => set({ progress }),
   skipStage: () =>
     set(({ stages }) => {
+      playPing();
+
       // If we're on a long break (last stage), reset the stages.
       if (stages[0] === "longBreak")
         return { stages: DEFAULT_STAGES, progress: 0 };

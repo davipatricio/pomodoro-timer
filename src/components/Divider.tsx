@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SmallSpan = styled.span`
+const Divider = styled.span`
   display: block;
 
   background-color: ${({ theme }) => theme.colors.darkBorder};
@@ -9,6 +9,4 @@ const SmallSpan = styled.span`
   width: 100%;
 `;
 
-export default function Divider() {
-  return <SmallSpan />;
-}
+export default Divider;

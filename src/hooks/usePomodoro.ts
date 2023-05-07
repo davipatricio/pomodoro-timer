@@ -3,14 +3,14 @@ import { create } from "zustand";
 interface PomodoroState {
   isRunning: boolean;
   stages: ("focus" | "break" | "longBreak")[];
-  setPomodoro: (pomodoro: Omit<PomodoroState, "setPomodoro">) => void;
+  setPomodoro: (
+    pomodoro: Partial<PomodoroState>
+  ) => void;
   skipStage: () => void;
+  reset: () => void;
 }
 
-export const PomodoroTimes: Record<
-  PomodoroState["stages"][number],
-  number
-> = {
+export const PomodoroTimes: Record<PomodoroState["stages"][number], number> = {
   focus: 3,
   break: 5,
   longBreak: 5,
@@ -45,4 +45,5 @@ export const usePomodoro = create<PomodoroState>((set) => ({
       // remove the first stage from the array.
       return { ...state, stages: state.stages.slice(1) };
     }),
+  reset: () => set({ isRunning: false, stages: DEFAULT_STAGES }),
 }));

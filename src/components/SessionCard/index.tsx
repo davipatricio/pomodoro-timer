@@ -18,6 +18,8 @@ export default function SessionCard() {
 
   useEffect(() => {
     const id = setInterval(() => {
+      if (!pomodoro.isRunning) return;
+
       setProgressSeconds((prevProgress) => {
         if (progressPercent <= 0) {
           clearInterval(id);
@@ -30,8 +32,8 @@ export default function SessionCard() {
     }, 1000);
 
     return () => clearInterval(id);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progressPercent]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [progressPercent, pomodoro.isRunning]);
 
   return (
     <Container>

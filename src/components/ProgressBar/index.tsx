@@ -1,6 +1,8 @@
-import { MdPause, MdRefresh } from "react-icons/md";
+import { MdPause, MdPlayArrow, MdRefresh } from "react-icons/md";
 import Icon from "../Icon";
 import { Container } from "./styles";
+import { usePomodoro } from "../../hooks/usePomodoro";
+import { useCallback } from "react";
 
 interface ProgressBarProps {
   progress: number;
@@ -8,18 +10,22 @@ interface ProgressBarProps {
 }
 
 export default function ProgressBar({ progress, time }: ProgressBarProps) {
-  const handlePause = () => {
-    console.log("pause");
-  };
+  const pomodoro = usePomodoro();
 
-  const handleReset = () => {
-    console.log("reset");
-  };
+  const PauseIcon = pomodoro.isRunning ? MdPause : MdPlayArrow;
+
+  const handlePause = useCallback(() => {
+    pomodoro.setPomodoro({ isRunning: !pomodoro.isRunning });
+  }, [pomodoro]);
+
+  const handleReset = useCallback(() => {
+    pomodoro.reset();
+  }, [pomodoro]);
 
   return (
     <Container progress={progress}>
       <div className="actions">
-        <Icon icon={<MdPause />} onClick={handlePause} />
+        <Icon icon={<PauseIcon />} onClick={handlePause} />
         <Icon icon={<MdRefresh />} onClick={handleReset} />
       </div>
 

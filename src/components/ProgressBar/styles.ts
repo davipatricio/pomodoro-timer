@@ -60,6 +60,11 @@ export const Container = styled.div<ProgressProps>`
       height: 50px;
       width: 50px;
 
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.lime};
+        scale: 1.1;
+      }
+
       > svg {
         font-size: 2.5rem;
       }

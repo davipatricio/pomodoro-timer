@@ -4,6 +4,8 @@ import HourglassSVG from "../../assets/hourglass.svg";
 import { usePomodoro } from "../../hooks/usePomodoro";
 import { formattedStages } from "../../utils/constants/PomodoroStages";
 import { PomodoroTimes } from "../../utils/constants/PomodoroTimes";
+import { useSettings } from "../../hooks/useSettings";
+import { playPing } from "../../utils/playPing";
 
 const Card = lazy(() => import("../Card"));
 const CardItem = lazy(() => import("../Card/CardItem"));
@@ -13,6 +15,7 @@ const Icon = lazy(() => import("../Icon"));
 const ProgressBar = lazy(() => import("../ProgressBar"));
 
 export default function SessionCard() {
+  const { soundEnabled } = useSettings();
   const pomodoro = usePomodoro();
 
   const stageDuration = PomodoroTimes[pomodoro.stages[0]];
@@ -28,6 +31,8 @@ export default function SessionCard() {
       }
 
       if (progressPercent <= 0) {
+        if (soundEnabled) playPing();
+
         clearInterval(id);
         pomodoro.skipStage();
         pomodoro.setProgress(0);

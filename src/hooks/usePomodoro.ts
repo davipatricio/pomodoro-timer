@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { PomodoroStages } from "../utils/constants/PomodoroStages";
-import { playPing } from "../utils/playPing";
 
 interface PomodoroState {
   isRunning: boolean;
@@ -33,7 +32,6 @@ export const usePomodoro = create<PomodoroState>((set) => ({
   setProgress: (progress) => set({ progress }),
   skipStage: () =>
     set(({ stages }) => {
-      playPing();
       const nextStages = stages.length !== 1 ? stages.slice(1) : DEFAULT_STAGES;
 
       return { stages: nextStages, progress: 0 };

@@ -1,11 +1,17 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { AiOutlineGithub } from "react-icons/ai";
-import { MdOutlineModeNight, MdOutlineWbSunny } from "react-icons/md";
+import {
+  MdOutlineModeNight,
+  MdOutlineWbSunny,
+  MdSettings,
+} from "react-icons/md";
 import { useCurrentTheme } from "../../hooks/useCurrentTheme";
 import Icon from "../Icon";
 import { Container } from "./styles";
+import SettingsModal from "../SettingsModal";
 
 export default function Header() {
+  const [modalOpen, setModalOpen] = useState(false);
   const { theme, setTheme } = useCurrentTheme();
 
   const ThemeIcon = theme === "light" ? MdOutlineWbSunny : MdOutlineModeNight;
@@ -21,6 +27,8 @@ export default function Header() {
     []
   );
 
+  const toggleModal = useCallback(() => setModalOpen((prev) => !prev), []);
+
   return (
     <Container>
       <div className="name">
@@ -31,6 +39,9 @@ export default function Header() {
       <div className="icons">
         <Icon icon={<ThemeIcon />} onClick={handleTheme} />
         <Icon icon={<AiOutlineGithub />} onClick={handleNewTab} />
+        <Icon icon={<MdSettings />} onClick={toggleModal} />
+
+        <SettingsModal open={modalOpen} onClose={toggleModal} />
       </div>
     </Container>
   );

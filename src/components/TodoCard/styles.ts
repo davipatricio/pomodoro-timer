@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const CheckboxWrapper = styled.div`
+interface CheckboxWrapperProps {
+  $checkmarkUrl: string;
+}
+
+export const CheckboxWrapper = styled.div<CheckboxWrapperProps>`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -56,7 +60,7 @@ export const CheckboxWrapper = styled.div`
         &::after {
           content: "";
           display: block;
-          background: url("/src/assets/checkmark.svg") no-repeat center;
+          background: url(${({ $checkmarkUrl }) => $checkmarkUrl}) no-repeat center;
           width: 20px;
           height: 20px;
         }

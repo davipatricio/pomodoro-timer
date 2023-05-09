@@ -1,6 +1,7 @@
 import { lazy, useCallback, useEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
 import RocketSVG from "../../assets/rocket.svg";
+import CheckmarkSVG from "../../assets/checkmark.svg";
 import { CheckboxWrapper, SubmitWrapper } from "./styles";
 
 const Card = lazy(() => import("../Card"));
@@ -49,7 +50,7 @@ export default function TodoCard() {
 
       <Divider />
 
-      <CheckboxWrapper>
+      <CheckboxWrapper $checkmarkUrl={CheckmarkSVG}>
         {tasks.length ? (
           tasks.map((task, index) => (
             <label key={`${task}-${index}`}>
